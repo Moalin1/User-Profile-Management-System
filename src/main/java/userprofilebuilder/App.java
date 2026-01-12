@@ -1,21 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package userprofilebuilder;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import userprofilebuilder.view.MainViewer;
+
 
 /**
  *
  * @author 
  */
-public class App {
+ public class App {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        // This is where your application will start
+        // Application bootstrap.
+        // Keep JFrame setup here; keep the UI itself in MainViewer (a JPanel).
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("User Profile Builder");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            // Root UI container for the app.
+            frame.setContentPane(new MainViewer());
+            frame.setVisible(true);
+        });
     }
     
 }

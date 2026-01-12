@@ -7,7 +7,7 @@ package userprofilebuilder.model;
 /**
  *
  * @author 
- * This is model class may be handy for putting data relevant groups of User Profiles in {many Users]
+ * This is a model class that may be handy for putting data relevant groups of User Profiles in {many Users]
  */
 public class UserGroup {
     

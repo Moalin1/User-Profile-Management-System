@@ -5,9 +5,11 @@
 package userprofilebuilder.view;
 
 /**
+ * MainViewer is the *root* UI container for the application.
  *
- * @author 
- * This might be useful for defining you Main App Viewer e.g. a JFrame
+ * In this module we build the whole UI as a hierarchy of JPanels.
+ * The App class creates a JFrame and sets its content pane to an instance
+ * of this panel.
  */
 public class MainViewer {
     
