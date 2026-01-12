@@ -22,6 +22,7 @@ import userprofilebuilder.view.MainViewer;
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             // Root UI container for the app.
             frame.setContentPane(new MainViewer());
+            // some of the basic attributes of the frame should be set here
             frame.setVisible(true);
         });
     }
