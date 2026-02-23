@@ -19,7 +19,7 @@ import userprofilebuilder.view.MainViewer;
         // Keep JFrame setup here; keep the UI itself in MainViewer (a JPanel).
         // The boiler plate code means the UI runs on the Event Dispatch Thread (EDT).
         SwingUtilities.invokeLater(() -> {
-            MainViewer frame = new MainViewer();
+            MainViewer frame = MainViewer.getInstance();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setTitle("User Profile Builder");
             // some of the basic attributes of the frame should be set here

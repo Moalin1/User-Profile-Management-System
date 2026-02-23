@@ -23,7 +23,10 @@ import java.io.File;
 // Week 1 in W1R1 you will need to set the attributes of the frame in App.java
 // Also to add an EditPanel in MainViewer for the components to go in.
 public class MainViewer extends JFrame{
-    public MainViewer() {
+    
+    private static MainViewer instance;
+    
+    private MainViewer() {
         
         setLayout (new BorderLayout());
         
@@ -173,4 +176,13 @@ public class MainViewer extends JFrame{
             System.out.println("Error saving file: " +e.getMessage());
         }
     }
-}
+    
+    
+    public static MainViewer getInstance(){
+        if (instance == null) {
+            instance = new MainViewer();
+        }
+        return instance;
+        }
+    }
+
