@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.File;
 
 
 /**
@@ -39,7 +40,7 @@ public class MainViewer extends JFrame{
         JMenu fileMenu = new JMenu("File");
         JMenuItem openItem = new JMenuItem("Open");
         JMenuItem quitItem = new JMenuItem("Quit");
-        
+    
         quitItem.addActionListener(e ->         //  Quit action listener
         { 
             System.out.println("Quitting application...");
@@ -58,6 +59,21 @@ public class MainViewer extends JFrame{
         
         this.setJMenuBar(menuBar);
        
+        
+        JMenuItem saveItem = new JMenuItem("Save");
+        fileMenu.add(saveItem);
+        
+        saveItem.addActionListener(e -> {
+            JFileChooser fc = new JFileChooser();
+            int result = fc.showSaveDialog(this);
+            
+            if (result == JFileChooser.APPROVE_OPTION){
+                File fileToSave = fc.getSelectedFile();
+                saveCSV(fileToSave.getPath());
+            }
+        });
+        
+        
         
                                                        
        nameEditPanel.setLayout(new GridLayout(0,1));        //  Layout for the buttons
@@ -143,5 +159,18 @@ public class MainViewer extends JFrame{
         row.add(deleteBtn);
         
         return row;
+    }
+    
+    private void saveCSV(String p)
+    {
+        try(PrintWriter pw = new PrintWriter(new FileWriter(p)))
+        {
+            System.out.println("Data successfully saved to: " + p);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            System.out.println("Error saving file: " +e.getMessage());
+        }
     }
 }
