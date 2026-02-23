@@ -101,6 +101,27 @@ public class MainViewer extends JFrame{
         JPanel row = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JRadioButton radio = new JRadioButton(name);
         JButton editBtn = new JButton("Edit");
+        JButton deleteBtn = new JButton("Delete");
+        
+        
+        deleteBtn.addActionListener(e -> {
+            
+            Container parent = row.getParent();
+            
+            if (parent != null){
+                
+                parent.remove(row);
+                parent.revalidate();
+                parent.repaint();
+                
+                System.out.println("Deleted user: "+ name);
+            }
+        
+            
+            });
+        
+        
+        
         
        editBtn.addActionListener(e -> {
            String newName = JOptionPane.showInputDialog("Enter new text:", radio.getText());        //  Essentially says when you click on the button the dialog box with this text comes up.
@@ -119,7 +140,7 @@ public class MainViewer extends JFrame{
         
         row.add(radio);
         row.add(editBtn);
-        row.add(new JButton ("Delete"));
+        row.add(deleteBtn);
         
         return row;
     }
