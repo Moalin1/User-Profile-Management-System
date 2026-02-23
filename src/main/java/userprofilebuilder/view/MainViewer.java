@@ -23,6 +23,13 @@ public class MainViewer extends JPanel{
         JPanel nameEditPanel = new JPanel();
         nameEditPanel.setBorder(new TitledBorder("Name"));
         
+        nameEditPanel.setLayout(new  FlowLayout());         //  Setting up the buttons
+        nameEditPanel.setLayout(new GridLayout(0,1));
+        nameEditPanel.add(createRow("John Smith"));
+        nameEditPanel.add(createRow("Tim Huerter"));
+        nameEditPanel.add(createRow("John Barnes"));
+        
+        
         JTabbedPane tabs = new JTabbedPane();
         
 
@@ -32,5 +39,14 @@ public class MainViewer extends JPanel{
         
         add(tabs, BorderLayout.CENTER);         //  Edits the layout of all the tabs and content in it
     }
-    
+    private JPanel createRow(String name)
+    {
+        JPanel row = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        
+        row.add(new JRadioButton(name));
+        row.add(new JButton("Edit"));
+        row.add(new JButton ("Delete"));
+        
+        return row;
+    }
 }
