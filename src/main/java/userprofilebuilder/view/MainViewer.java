@@ -82,7 +82,7 @@ public class MainViewer extends JPanel{
            String newName = JOptionPane.showInputDialog("Enter new text:", radio.getText());
            if (newName != null)
            {
-               System.out.println("User changed data to: " + newName);
+               radio.setText(newName);
            }
        });
         
