@@ -127,7 +127,35 @@ public class MainViewer extends JFrame{
     
     JButton displayBtn = new JButton("Display Profile");
     displayBtn.addActionListener(e -> {
-        System.out.println("Displaying Profile...");
+        String id = "";
+        
+        for (JRadioButton rb : allRadioButtons){
+            if (rb.isSelected()){
+                id = rb.getActionCommand();
+                break;
+            }
+        }
+        
+        
+        if(!id.isEmpty()){
+            System.out.println("{");
+            for (JRadioButton rb : allRadioButtons){
+                if(rb.getActionCommand().equals(id) && !rb.getText().contains("@")
+                   && !rb.getText().equals(id))   
+                        {
+                    System.out.println("Title: "+ rb.getText());
+                }
+                
+            }
+            System.out.println("Name: " + id);
+            
+            for (JRadioButton rb : allRadioButtons){
+            if (rb.getActionCommand().equals(id) && rb.getText().contains("@")){
+            System.out.println("Email: " + rb.getText());    
+            }    
+            }}
+        
+        System.out.println("}");
     });
     
     JButton addBtn = new JButton("Add Profile");
