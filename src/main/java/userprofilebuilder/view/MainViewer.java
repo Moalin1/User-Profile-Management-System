@@ -79,10 +79,16 @@ public class MainViewer extends JPanel{
         JButton editBtn = new JButton("Edit");
         
        editBtn.addActionListener(e -> {
-           String newName = JOptionPane.showInputDialog("Enter new text:", radio.getText());
-           if (newName != null)
+           String newName = JOptionPane.showInputDialog("Enter new text:", radio.getText());        //  Essentially says when you click on the button the dialog box with this text comes up.
+           if (newName != null && !newName.trim().isEmpty())         //  Checks if when it is trimmed it has not been trimmed from being "   "
            {
-               radio.setText(newName);
+               radio.setText(newName);      //  If you input something in the dialog box it will change JRadioButton to whatever you input
+               
+               System.out.println("Information changed to: " +newName);
+           }
+           else
+           {
+               System.out.println("Please enter a valid input");
            }
        });
         
