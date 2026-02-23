@@ -21,7 +21,7 @@ import java.io.IOException;
 
 // Week 1 in W1R1 you will need to set the attributes of the frame in App.java
 // Also to add an EditPanel in MainViewer for the components to go in.
-public class MainViewer extends JPanel{
+public class MainViewer extends JFrame{
     public MainViewer() {
         
         setLayout (new BorderLayout());
@@ -34,6 +34,30 @@ public class MainViewer extends JPanel{
         
         JPanel emailPanel = new JPanel();
         emailPanel.setBorder(new TitledBorder("Email"));
+        
+        JMenuBar menuBar = new JMenuBar();      //  Making the File Menu Button
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem openItem = new JMenuItem("Open");
+        JMenuItem quitItem = new JMenuItem("Quit");
+        
+        quitItem.addActionListener(e ->         //  Quit action listener
+        { 
+            System.out.println("Quitting application...");
+            System.exit(0);
+                });
+        
+        
+        openItem.addActionListener (e ->        //  Open action listener
+        {
+            System.out.println("Opening...");
+        });
+        
+        fileMenu.add(openItem);
+        fileMenu.add(quitItem);
+        menuBar.add(fileMenu);
+        
+        this.setJMenuBar(menuBar);
+       
         
                                                        
        nameEditPanel.setLayout(new GridLayout(0,1));        //  Layout for the buttons
