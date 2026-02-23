@@ -4,6 +4,12 @@ import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.TitledBorder;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
 
 /**
  * MainViewer is the *root* UI container for the application.
@@ -25,9 +31,20 @@ public class MainViewer extends JPanel{
         
         nameEditPanel.setLayout(new  FlowLayout());         //  Setting up the buttons
         nameEditPanel.setLayout(new GridLayout(0,1));
-        nameEditPanel.add(createRow("John Smith"));
-        nameEditPanel.add(createRow("Tim Huerter"));
-        nameEditPanel.add(createRow("John Barnes"));
+        
+        try (BufferedReader br = new BufferedReader(new FileReader("username.csv")))
+        {
+          String line;
+          while ((line = br.readLine()) != null)
+                  {
+                      nameEditPanel.add(createRow(line));
+                  }
+}
+          
+          catch (IOException e)
+                  {
+                  System.out.println("Error loading names: " + e.getMessage());
+                  }
         
         
         JTabbedPane tabs = new JTabbedPane();
