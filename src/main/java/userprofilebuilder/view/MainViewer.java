@@ -91,6 +91,7 @@ public class MainViewer extends JPanel{
                System.out.println("Please enter a valid input");
            }
        });
+       
         
         row.add(radio);
         row.add(editBtn);
