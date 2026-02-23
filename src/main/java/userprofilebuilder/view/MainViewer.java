@@ -75,9 +75,15 @@ public class MainViewer extends JPanel{
     private JPanel createRow(String name)
     {
         JPanel row = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JRadioButton radio = new JRadioButton(name);
+        JButton editBtn = new JButton("Edit");
         
-        row.add(new JRadioButton(name));
-        row.add(new JButton("Edit"));
+       editBtn.addActionListener(e -> {
+           System.out.println("Associated name to the console: " +radio.getText());
+       });
+        
+        row.add(radio);
+        row.add(editBtn);
         row.add(new JButton ("Delete"));
         
         return row;
