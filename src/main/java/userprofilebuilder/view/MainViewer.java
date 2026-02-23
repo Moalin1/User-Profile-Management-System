@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.File;
+import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -25,6 +27,7 @@ import java.io.File;
 public class MainViewer extends JFrame{
     
     private static MainViewer instance;
+    private List<JRadioButton> allRadioButtons = new ArrayList<>(); 
     
     private MainViewer() {
         
@@ -99,9 +102,9 @@ public class MainViewer extends JFrame{
                       String[] data = line.split(",");
                       
                       
-                      nameEditPanel.add(createRow(data[2], nameGroup));
-                      emailPanel.add(createRow(data[3], emailGroup));
-                      titlePanel.add(createRow(data[1], titleGroup));
+                      nameEditPanel.add(createRow(data[2], data[2], nameGroup));
+                      emailPanel.add(createRow(data[3], data[2], emailGroup));
+                      titlePanel.add(createRow(data[1], data[2], titleGroup));
                   }
 }
           
@@ -119,14 +122,21 @@ public class MainViewer extends JFrame{
         
         add(tabs, BorderLayout.CENTER);         //  Edits the layout of all the tabs and content in it
     }
-    private JPanel createRow(String name, ButtonGroup group)
+    private JPanel createRow(String displayLabel, String name, ButtonGroup group)
     {
         JPanel row = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JRadioButton radio = new JRadioButton(name);
+        JRadioButton radio = new JRadioButton(displayLabel);
         JButton editBtn = new JButton("Edit");
         JButton deleteBtn = new JButton("Delete");
         
         group.add(radio);
+        allRadioButtons.add(radio);
+        
+        radio.setActionCommand(name);
+        
+        radio.addActionListener(e -> {
+            syncTabs(e.getActionCommand());
+        });
         
         
         deleteBtn.addActionListener(e -> {
@@ -190,6 +200,17 @@ public class MainViewer extends JFrame{
         }
         return instance;
         }
+    
+    private void syncTabs(String selectedID) {
+        for (JRadioButton rb : allRadioButtons)
+        {
+            if (rb.getActionCommand().equals(selectedID))
+                    {
+                        rb.setSelected(true);
+                        
+                    }
+        }
+    }
     }
 
 
