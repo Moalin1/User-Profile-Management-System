@@ -27,17 +27,34 @@ public class MainViewer extends JPanel{
         setLayout (new BorderLayout());
         
         JPanel nameEditPanel = new JPanel();
-        nameEditPanel.setBorder(new TitledBorder("Name"));
+        nameEditPanel.setBorder(new TitledBorder("Name"));      // Creating the titles on the pages not the tabs
         
-        nameEditPanel.setLayout(new  FlowLayout());         //  Setting up the buttons
-        nameEditPanel.setLayout(new GridLayout(0,1));
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBorder(new TitledBorder("Title"));
         
-        try (BufferedReader br = new BufferedReader(new FileReader("username.csv")))
+        JPanel emailPanel = new JPanel();
+        emailPanel.setBorder(new TitledBorder("Email"));
+        
+                                                       
+       nameEditPanel.setLayout(new GridLayout(0,1));        //  Layout for the buttons
+        
+        emailPanel.setLayout(new GridLayout(0,1));
+        
+        titlePanel.setLayout(new GridLayout(0,1));
+        
+        
+        
+        try (BufferedReader br = new BufferedReader(new FileReader("userprofile.csv")))    //  Creating the try-catch method in order to avoid IOExceptions
         {
           String line;
           while ((line = br.readLine()) != null)
                   {
-                      nameEditPanel.add(createRow(line));
+                      String[] data = line.split(",");
+                      
+                      
+                      nameEditPanel.add(createRow(data[2]));
+                      emailPanel.add(createRow(data[3]));
+                      titlePanel.add(createRow(data[1]));
                   }
 }
           
@@ -49,10 +66,9 @@ public class MainViewer extends JPanel{
         
         JTabbedPane tabs = new JTabbedPane();
         
-
-        
-        tabs.addTab("User Name", nameEditPanel);        //  Creating new tabs
-        
+        tabs.addTab("User Title", titlePanel);        //  Creating new tabs
+        tabs.addTab("User Name", nameEditPanel);
+        tabs.addTab("User Email", emailPanel);
         
         add(tabs, BorderLayout.CENTER);         //  Edits the layout of all the tabs and content in it
     }
