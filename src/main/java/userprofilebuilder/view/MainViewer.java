@@ -121,6 +121,25 @@ public class MainViewer extends JFrame{
         tabs.addTab("User Email", emailPanel);
         
         add(tabs, BorderLayout.CENTER);         //  Edits the layout of all the tabs and content in it
+    
+    
+    JPanel southPanel = new JPanel(new FlowLayout());
+    
+    JButton displayBtn = new JButton("Display Profile");
+    displayBtn.addActionListener(e -> {
+        System.out.println("Displaying Profile...");
+    });
+    
+    JButton addBtn = new JButton("Add Profile");
+    addBtn.addActionListener (e -> {
+        System.out.println("Adding profile...");
+    });
+    
+    southPanel.add(displayBtn);
+    southPanel.add(addBtn);
+    this.add(southPanel, BorderLayout.SOUTH);
+    
+    
     }
     private JPanel createRow(String displayLabel, String name, ButtonGroup group)
     {
