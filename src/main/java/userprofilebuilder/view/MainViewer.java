@@ -85,6 +85,10 @@ public class MainViewer extends JFrame{
         
         titlePanel.setLayout(new GridLayout(0,1));
         
+        ButtonGroup nameGroup = new ButtonGroup();
+        ButtonGroup titleGroup = new ButtonGroup();
+        ButtonGroup emailGroup = new ButtonGroup();
+        
         
         
         try (BufferedReader br = new BufferedReader(new FileReader("userprofile.csv")))    //  Creating the try-catch method in order to avoid IOExceptions
@@ -95,9 +99,9 @@ public class MainViewer extends JFrame{
                       String[] data = line.split(",");
                       
                       
-                      nameEditPanel.add(createRow(data[2]));
-                      emailPanel.add(createRow(data[3]));
-                      titlePanel.add(createRow(data[1]));
+                      nameEditPanel.add(createRow(data[2], nameGroup));
+                      emailPanel.add(createRow(data[3], emailGroup));
+                      titlePanel.add(createRow(data[1], titleGroup));
                   }
 }
           
@@ -115,12 +119,14 @@ public class MainViewer extends JFrame{
         
         add(tabs, BorderLayout.CENTER);         //  Edits the layout of all the tabs and content in it
     }
-    private JPanel createRow(String name)
+    private JPanel createRow(String name, ButtonGroup group)
     {
         JPanel row = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JRadioButton radio = new JRadioButton(name);
         JButton editBtn = new JButton("Edit");
         JButton deleteBtn = new JButton("Delete");
+        
+        group.add(radio);
         
         
         deleteBtn.addActionListener(e -> {
