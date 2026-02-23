@@ -79,7 +79,11 @@ public class MainViewer extends JPanel{
         JButton editBtn = new JButton("Edit");
         
        editBtn.addActionListener(e -> {
-           System.out.println("Associated name to the console: " +radio.getText());
+           String newName = JOptionPane.showInputDialog("Enter new text:", radio.getText());
+           if (newName != null)
+           {
+               System.out.println("User changed data to: " + newName);
+           }
        });
         
         row.add(radio);
